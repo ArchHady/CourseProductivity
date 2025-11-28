@@ -3,7 +3,7 @@ import streamlit as st
 import plotly.express as px 
 
 st.set_page_config(layout= 'wide', page_title= 'Productivity Project')
-df=pd.read_csv("Cleaned_df.csv",index_col=0)
+df=pd.read_csv("cleaned_df.csv",index_col=0)
 html_title = """<h1 style="color:white;text-align:center;"> Garment Employees Productivity EDA Project </h1>"""
 st.markdown(html_title, unsafe_allow_html=True)
 st.image("https://www.activtrak.com/wp-content/uploads/2024/08/blog-header-how-to-measure-team-productivity-q3-24.jpg")
@@ -23,4 +23,5 @@ elif page =='multivariant':
     st.title('multivariant')
     prod_per_month_per_dep = df.groupby(["month",'department'])["actual_productivity"].mean().sort_values(ascending = False).reset_index()
     st.plotly_chart(px.bar(data_frame=prod_per_month_per_dep, x="department", y="actual_productivity",color="month", barmode="group", height = 500))
+
 
